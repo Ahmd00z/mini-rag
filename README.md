@@ -2,6 +2,33 @@
 
 This is a minimal implementation of the RAG model for question answering.
 
+## The Course
+
+This is an educational project where all of the codes where explained (step by step) via a set of `Arabic` youtube videos. Please check the list:
+
+| # | Title                                    | Link                                                                                                 | Codes                                              |
+|---|------------------------------------------|------------------------------------------------------------------------------------------------------|----------------------------------------------------|
+| 1 | About the Course ماذا ولمـــاذا          | [Video](https://www.youtube.com/watch?v=Vv6e2Rb1Q6w&list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj)         | NA                                                 |
+| 2 | What will we build ماذا سنبنى في المشروع | [Video](https://www.youtube.com/watch?v=_l5S5CdxE-Q&list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj&index=2) | NA                                                 |
+| 3 | Setup your tools الأدوات الأساسية        | [Video](https://www.youtube.com/watch?v=VSFbkFRAT4w&list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj&index=3) | NA                                                 |
+| 4 | Project Architecture                     | [Video](https://www.youtube.com/watch?v=Ei_nBwBbFUQ&list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj&index=4) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-001) |
+| 5 | Welcome to FastAPI                       | [Video](https://www.youtube.com/watch?v=cpOuCdzN_Mo&list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj&index=5) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-002) |
+| 6 | Nested Routes + Env Values               | [Video](https://www.youtube.com/watch?v=CrR2Bz2Y7Hw&list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj&index=6) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-003) |
+| 7 | Uploading a File                         | [Video](https://www.youtube.com/watch?v=5alMKCbFqWs&list=PLvLvlVqNQGHCUR2p0b8a0QpVjDUg50wQj&index=7) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-004) |
+| 8 | File Processing                         | [Video](https://www.youtube.com/watch?v=gQgr2iwtSBw) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-005) |
+| 9 | Docker - MongoDB - Motor                         | [Video](https://www.youtube.com/watch?v=2NOKWm0xJAk) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-006) |
+| 10 | Mongo Schemes and Models                        | [Video](https://www.youtube.com/watch?v=zgcnnMJXXV8) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-007) |
+| 11 | Mongo Indexing                        | [Video](https://www.youtube.com/watch?v=iO8FAmUVcjE) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-008) |
+| 12 | Data Pipeline Enhancements                        | [Video](https://www.youtube.com/watch?v=4x1DuezZBDU) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-008) |
+| 13 | Checkpoint-1                        | [Video](https://www.youtube.com/watch?v=7xIsZkCisPk) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-008) |
+| 14 | LLM Factory                        | [Video](https://www.youtube.com/watch?v=5TKRIFtIQAY) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-008) |
+| 15 | Vector DB Factory                        | [Video](https://www.youtube.com/watch?v=JtS9UkvF_10) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-009) |
+| 16 | Semantic Search                       | [Video](https://www.youtube.com/watch?v=V3swQKokJW8) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-010) |
+| 17 | Augmented Answers                       | [Video](https://www.youtube.com/watch?v=1Wx8BoM5pLU) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-011) |
+| 18 | Checkpoint-1 + Fix Issues                       | [Video](https://youtu.be/6zG4Idxldvg) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-012) |
+| 19 | Ollama Local LLM Server                       | [Video](https://youtu.be/-epZ1hAAtrs) | [branch](https://github.com/bakrianoo/mini-rag/tree/tut-012) |
+
+
 ## Requirements
 
 - Python 3.8 or later
@@ -17,6 +44,16 @@ $ conda create -n mini-rag python=3.8
 ```bash
 $ conda activate mini-rag
 ```
+
+### (Optional) Setup you command line interface for better readability
+
+```bash
+export PS1="\[\033[01;32m\]\u@\h:\w\n\[\033[00m\]\$ "
+```
+
+### (Optional) Run Ollama Local LLM Server using Colab + Ngrok
+
+- Check the [notebook](https://colab.research.google.com/drive/1KNi3-9KtP-k-93T3wRcmRe37mRmGhL9p?usp=sharing) + [Video](https://youtu.be/-epZ1hAAtrs)
 
 ## Installation
 
@@ -34,26 +71,21 @@ $ cp .env.example .env
 
 Set your environment variables in the `.env` file. Like `OPENAI_API_KEY` value.
 
-### Install Ollama (Optional)
-
-1) Install Ollama from [here](https://github.com/ollama/ollama/tree/main#ollama)
-2) Pull one of the models from [here](https://github.com/ollama/ollama/tree/main#model-library)
+## Run Docker Compose Services
 
 ```bash
-$ ollama pull dolphin-phi
+$ cd docker
+$ cp .env.example .env
 ```
 
-3) (**Optional**) set the `OLLAMA_HOST` in your operating system to be `0.0.0.0`
-4) Run the Ollama server 
+- update `.env` with your credentials
+
+
 
 ```bash
-
-$ ollama serve
-
+$ cd docker
+$ sudo docker compose up -d
 ```
-
-5) (**Optional**) Explore the APIs [Docs](https://github.com/ollama/ollama/blob/main/docs/api.md)
-
 
 ## Run the FastAPI server
 
@@ -63,87 +95,4 @@ $ uvicorn main:app --reload --host 0.0.0.0 --port 5000
 
 ## POSTMAN Collection
 
-Download the POSTMAN collection from [/assets/mini-rag-dev.postman_collection.json](/assets/mini-rag-dev.postman_collection.json)
-
-## API Docs
-
-- Swagger UI: http://localhost:5000/docs
-
-## APIs
-
-### 1) Upload a document
-
-```bash
-curl --location --request POST 'http://localhost:5000/api/v1/upload/1' \
---form 'file=@"/C:/Users/Home/Desktop/wiki.txt"'
-```
-
-### 2) Process the document
-
-This step includes:
-1) Extracting the text from the document
-   
-2) Chunking the text into documents
-
-![alt text](assets/images/1.png)
-
-3) Indexing the documents into LanceDB
-   
-![alt text](assets/images/2.png)
-
-```bash
-curl --location --request POST 'http://localhost:5000/api/v1/process/1' \
---header 'Content-Type: application/json' \
---data '{
-    "file_name": "1_NYAUD71QDR_wiki.txt",
-    "chunk_size": 200,
-    "overlab_size": 50,
-    "reset": 1,
-    "llm_type": "huggingface"
-}'
-```
-
-### 3) Search for similar documents
-
-This step includes:
-1) Convert query text to embeddings
-   
-2) Search for similar documents using the embeddings / or / keywords
-
-![alt text](assets/images/3.png)
-
-```bash
-curl --location --request POST 'http://localhost:5000/api/v1/search/1' \
---header 'Content-Type: application/json' \
---data '{
-    "query": "من مخترع الة التصوير السينمائي؟",
-    "llm_type": "huggingface",
-    "mode": "hybrid",
-    "file_name": "1_NYAUD71QDR_wiki.txt",
-    "hybrid_scale": 0.7
-}'
-```
-
-### 4) Get the answer
-This step includes:
-1) Convert query text to embeddings
-   
-2) Search for similar documents using the embeddings / or / keywords
-   
-3) Create a prompt including the query and the similar documents
-   
-4) Pass the prompt to the LLM model to get the answer
-   
-![alt text](assets/images/4.png)
-
-```bash
-curl --location --request POST 'http://localhost:5000/api/v1/answer/1' \
---header 'Content-Type: application/json' \
---data '{
-    "query": "من مخترع الة التصوير السينمائي؟",
-    "llm_type": "huggingface", 
-    "mode": "hybrid", 
-    "llm_prompt_type": "openai", 
-    "return_prompt": true
-}'
-```
+Download the POSTMAN collection from [/assets/mini-rag-app.postman_collection.json](/assets/mini-rag-app.postman_collection.json)
