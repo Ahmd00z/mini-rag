@@ -16,4 +16,5 @@ class ProjectController(BaseController):
 
         if not os.path.exists(project_dir):
             os.makedirs(project_dir)
+
         return project_dir
