@@ -24,7 +24,7 @@ class GeminiProvider(LLMInterface):
         # تهيئة الاتصال بسيرفرات جوجل
         genai.configure(api_key=self.api_key)
         self.client = genai
-
+        self.enums = GeminiEnums
         self.logger = logging.getLogger(__name__)
 
     def set_generation_model(self, model_id: str):
