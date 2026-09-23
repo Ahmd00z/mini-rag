@@ -9,7 +9,7 @@ class OpenAIEnums(Enum):
     SYSTEM = "system"
     USER = "user"
     ASSISTANT = "assistant"
-
+    
 
 class GeminiEnums(Enum):
     USER = "user"
