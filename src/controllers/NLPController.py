@@ -89,7 +89,7 @@ class NLPController(BaseController):
         return results
     
     def answer_rag_question(self, project: Project, query: str, limit: int = 10):
-        
+
         answer, full_prompt, chat_history = None, None, None
 
         # step1: retrieve related documents
@@ -101,14 +101,14 @@ class NLPController(BaseController):
 
         if not retrieved_documents or len(retrieved_documents) == 0:
             return answer, full_prompt, chat_history
-        
+
         # step2: Construct LLM prompt
         system_prompt = self.template_parser.get("rag", "system_prompt")
 
         documents_prompts = "\n".join([
             self.template_parser.get("rag", "document_prompt", {
-                    "doc_num": idx + 1,
-                    "chunk_text": doc.text,
+                "doc_num": idx + 1,
+                "chunk_text": doc.text,
             })
             for idx, doc in enumerate(retrieved_documents)
         ])
@@ -117,15 +117,18 @@ class NLPController(BaseController):
             "query": query
         })
 
-        # step3: Construct Generation Client Prompts
+        # step3: Construct LLM prompt
         chat_history = [
             self.generation_client.construct_prompt(
                 prompt=system_prompt,
-                role=self.generation_client.enums.SYSTEM.value,
+                role="system",
             )
         ]
 
-        full_prompt = "\n\n".join([ documents_prompts,  footer_prompt])
+        full_prompt = "\n\n".join([
+            documents_prompts,
+            footer_prompt
+        ])
 
         # step4: Retrieve the Answer
         answer = self.generation_client.generate_text(
@@ -134,4 +137,3 @@ class NLPController(BaseController):
         )
 
         return answer, full_prompt, chat_history
-

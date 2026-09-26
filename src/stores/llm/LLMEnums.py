@@ -3,11 +3,18 @@ from enum import Enum
 class LLMEnums(Enum):
     OPENAI = "OPENAI"
     COHERE = "COHERE"
+    GEMINI = "GEMINI"
 
 class OpenAIEnums(Enum):
     SYSTEM = "system"
     USER = "user"
     ASSISTANT = "assistant"
+    
+
+class GeminiEnums(Enum):
+    USER = "user"
+    ASSISTANT = "model"
+
 
 class CoHereEnums(Enum):
     SYSTEM = "SYSTEM"
@@ -21,3 +28,4 @@ class CoHereEnums(Enum):
 class DocumentTypeEnum(Enum):
     DOCUMENT = "document"
     QUERY = "query"
+
