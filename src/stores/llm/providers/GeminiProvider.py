@@ -116,7 +116,9 @@ class GeminiProvider(LLMInterface):
 
     def construct_prompt(self, prompt: str, role: str):
         # Gemini بيستخدم "parts" بدل "content" وبتكون جوه List
+        # ملحوظة: role الجاية هنا بقت أصلاً "user" أو "model" بس
+        # (GeminiEnums.SYSTEM = "user")، فمفيش داعي لأي تحويل هنا
         return {
             "role": role,
-            "parts": [self.process_text(prompt)]
+            "parts": prompt
         }
