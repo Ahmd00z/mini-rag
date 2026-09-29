@@ -2,6 +2,7 @@ from ..LLMInterface import LLMInterface
 from ..LLMEnums import GeminiEnums, DocumentTypeEnum
 import google.generativeai as genai
 import logging
+from typing import List, Union
 
 class GeminiProvider(LLMInterface):
 
@@ -82,25 +83,29 @@ class GeminiProvider(LLMInterface):
             self.logger.error(f"Gemini generation error: {e}")
             return None
 
-    def embed_text(self, text: str, document_type: str = None):
+    def embed_text(self, text: Union[str, List[str]], document_type: str = None):
         
         if not self.client:
             self.logger.error("Gemini client was not set")
             return None
 
+        if isinstance(text, str):
+            text = [text]
+
         if not self.embedding_model_id:
             self.logger.error("Embedding model for Gemini was not set")
             return None
         
-        # توافق ذكي مع أنواع النصوص زي Cohere
         task_type = "RETRIEVAL_DOCUMENT"
         if document_type == DocumentTypeEnum.QUERY.value:
             task_type = "RETRIEVAL_QUERY"
 
         try:
+            processed_content = [self.process_text(t) for t in text]
+
             response = self.client.embed_content(
                 model = self.embedding_model_id,
-                content = self.process_text(text),
+                content = processed_content,
                 task_type = task_type
             )
 
@@ -108,16 +113,19 @@ class GeminiProvider(LLMInterface):
                 self.logger.error("Error while embedding text with Gemini")
                 return None
             
-            return response["embedding"]
+            embeddings = response["embedding"]
+
+            if len(embeddings) > 0 and isinstance(embeddings[0], (float, int)):
+                return [embeddings]
+
+            return embeddings
             
         except Exception as e:
             self.logger.error(f"Gemini embedding error: {e}")
             return None
 
     def construct_prompt(self, prompt: str, role: str):
-        # Gemini بيستخدم "parts" بدل "content" وبتكون جوه List
-        # ملحوظة: role الجاية هنا بقت أصلاً "user" أو "model" بس
-        # (GeminiEnums.SYSTEM = "user")، فمفيش داعي لأي تحويل هنا
+
         return {
             "role": role,
             "parts": prompt
